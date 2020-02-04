@@ -33,6 +33,10 @@ public class CadastroServiceImpl implements ICadastroUsuarioService {
 	}
 
 	
-	
+	@Override
+	public CadastroUsuario autenticarUsuario(String email, String senha) {
+		// TODO Auto-generated method stub
+		return repo.findByEmailAndSenha(email, senha);
+	}
 	
 }

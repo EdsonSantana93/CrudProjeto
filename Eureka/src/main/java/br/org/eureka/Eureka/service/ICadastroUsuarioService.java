@@ -8,5 +8,6 @@ public interface ICadastroUsuarioService  {
 	public List<CadastroUsuario> recuperarTodos(); 
 	public CadastroUsuario recuperarPorId(int id);
 	public void adicionarNovoUsuario (CadastroUsuario cadastro);
+	public CadastroUsuario autenticarUsuario(String email, String senha);
 
 }

@@ -42,4 +42,13 @@ public class CadastroController {
 		}
 		return ResponseEntity.notFound().build();
 	}
+	
+	@PostMapping("/cadastro/login")
+	public ResponseEntity<CadastroUsuario> logarUsuario(@RequestBody CadastroUsuario usuario){
+		CadastroUsuario u = servico.autenticarUsuario(usuario.getEmail(), usuario.getSenha());
+		if (u != null) {
+			return ResponseEntity.ok(u);
+		}
+		return ResponseEntity.notFound().build();
+	}
 }
