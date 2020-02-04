@@ -29,7 +29,6 @@ public class CadastroServiceImpl implements ICadastroUsuarioService {
 
 	@Override
 	public void adicionarNovoUsuario(CadastroUsuario cadastro) {
-		
 		repo.save(cadastro);
 	}
 

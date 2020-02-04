@@ -16,14 +16,14 @@ public class CadastroUsuario {
  
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	@Column(name = "idusuario")
-	private int idusuario;
+	@Column(name = "idUsuario")
+	private int idUsuario;
 
 	@Column(name="email", length = 150)
 	private String email;  
 	
-	@Column (name= "nomeusuario", length = 150)
-	private String nomeusuario; 
+	@Column (name= "nome", length = 150)
+	private String nome; 
 	
 	@Column (name = "senha", length = 200)
 	private String senha; 
@@ -36,7 +36,7 @@ public class CadastroUsuario {
 	private PerfilUsuario perfilUsuario;
 
 	public int getIdusuario() {
-		return idusuario;
+		return idUsuario;
 	}
 
 	public PerfilUsuario getPerfilUsuario() {
@@ -48,7 +48,7 @@ public class CadastroUsuario {
 	}
 
 	public void setIdusuario(int idusuario) {
-		this.idusuario = idusuario;
+		this.idUsuario = idusuario;
 	}
 
 	public String getEmail() {
@@ -59,12 +59,12 @@ public class CadastroUsuario {
 		this.email = email;
 	}
 
-	public String getNomeusuario() {
-		return nomeusuario;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setNomeusuario(String nomeusuario) {
-		this.nomeusuario = nomeusuario;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getSenha() {

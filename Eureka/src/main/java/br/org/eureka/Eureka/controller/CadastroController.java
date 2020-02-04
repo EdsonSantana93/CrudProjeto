@@ -23,8 +23,9 @@ public class CadastroController {
 	
 	@PostMapping("/cadastro/novo/")
 	public ResponseEntity<CadastroUsuario> incluirNovo (@RequestBody CadastroUsuario cadastro) {
-		
+		System.out.println(cadastro.getNome());
 		servico.adicionarNovoUsuario(cadastro);
+		System.out.println(cadastro.getNome());
 		return ResponseEntity.ok(cadastro);
 	}
 	
