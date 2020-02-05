@@ -1,15 +1,10 @@
 package br.org.eureka.Eureka.model;
-
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -22,25 +17,32 @@ public class Postagem {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "idpostagem")
+	@Column(name = "idPostagem")
 	private int idPostagem; 
 
 	
-	@Column(name = "mensagem", length = 2000)
-	private String mensagem; 
+	@Column(name = "texto", length = 2000)
+	private String texto; 
 	
 	//@Temporal
-	@Column (name= "datapost", length = 10) 
-	private String dataPost;
+	@Column (name= "datainclusao", length = 10) 
+	private String datainclusao;
 	
 	@ManyToOne
-	@JsonIgnoreProperties("comentario")
-	private PerfilUsuario perfilUsuario;
-	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="postagem")
 	@JsonIgnoreProperties("postagem")
-	private List<Comentario> comentario;
+	private CadastroUsuario cadastro;
 	
+	
+	
+	
+	public CadastroUsuario getCadastro() {
+		return cadastro;
+	}
+
+	public void setCadastro(CadastroUsuario cadastro) {
+		this.cadastro = cadastro;
+	}
+
 	public int getIdPostagem() {
 		return idPostagem;
 	}
@@ -49,36 +51,21 @@ public class Postagem {
 		this.idPostagem = idPostagem;
 	}
 
-	public String getMensagem() {
-		return mensagem;
+	
+	public String getTexto() {
+		return texto;
 	}
 
-	public void setMensagem(String mensagem) {
-		this.mensagem = mensagem;
+	public void setTexto(String texto) {
+		this.texto = texto;
 	}
 
-	public String getDataPost() {
-		return dataPost;
+	public String getDatainclusao() {
+		return datainclusao;
 	}
 
-	public void setDataPost(String dataPost) {
-		this.dataPost = dataPost;
-	}
-
-	public PerfilUsuario getPerfilUsuario() {
-		return perfilUsuario;
-	}
-
-	public void setPerfilUsuario(PerfilUsuario perfilUsuario) {
-		this.perfilUsuario = perfilUsuario;
-	}
-
-	public List<Comentario> getComentario() {
-		return comentario;
-	}
-
-	public void setComentario(List<Comentario> comentario) {
-		this.comentario = comentario;
+	public void setDatainclusao(String datainclusao) {
+		this.datainclusao = datainclusao;
 	}
 
 	

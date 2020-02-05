@@ -22,9 +22,9 @@ public class PostagemController {
 	@Autowired
 	private IPostagemService servico;
 	
-	@GetMapping("/postagem/{idpostagem}/")
-	public ResponseEntity<Postagem> mostrarPeloId(@PathVariable int idpostagem){
-		Postagem p = servico.recuperarPorId(idpostagem);
+	@GetMapping("/postagem/{idPostagem}")
+	public ResponseEntity<Postagem> mostrarPeloId(@PathVariable int idPostagem){
+		Postagem p = servico.recuperarPorId(idPostagem);
 		if (p != null) {
 			return ResponseEntity.ok(p);
 		}
@@ -43,7 +43,7 @@ public class PostagemController {
 		return ResponseEntity.ok(post);
 	}
 	
-	@DeleteMapping("/postagem/{idpostagem}")
+	@DeleteMapping("/postagem/{idPostagem}")
 	public ResponseEntity<Postagem> deletar(@PathVariable Postagem post) {
 		
 		servico.deletarPost(post);

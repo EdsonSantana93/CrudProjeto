@@ -1,11 +1,14 @@
 package br.org.eureka.Eureka.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -24,29 +27,26 @@ public class CadastroUsuario {
 	
 	@Column (name= "nome", length = 150)
 	private String nome; 
-	
+
 	@Column (name = "senha", length = 200)
 	private String senha; 
 	
 	@Column (name="telefone", length = 20)
     private String telefone;
 	
-	@OneToOne
-	@JsonIgnoreProperties("cadastroUsuario")
-	private PerfilUsuario perfilUsuario;
+	
+	@Column (name="foto", length = 400 )
+	private String foto; 
+	
+	@Column (name= "descricao", length = 600)
+	private String descricao;
 
-	public int getIdusuario() {
-		return idUsuario;
-	}
-
-	public PerfilUsuario getPerfilUsuario() {
-		return perfilUsuario;
-	}
-
-	public void setPerfilUsuario(PerfilUsuario perfilUsuario) {
-		this.perfilUsuario = perfilUsuario;
-	}
-
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "cadastro")
+	@JsonIgnoreProperties("cadastro")
+	private List<Postagem> postagem;
+	
+	
 	public void setIdusuario(int idusuario) {
 		this.idUsuario = idusuario;
 	}
@@ -83,7 +83,37 @@ public class CadastroUsuario {
 		this.telefone = telefone;
 	}
 
-	
+	public int getIdUsuario() {
+		return idUsuario;
+	}
 
+	public void setIdUsuario(int idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	
+	public List<Postagem> getPostagem() {
+		return postagem;
+	}
+
+	public void setPostagem(List<Postagem> postagem) {
+		this.postagem = postagem;
+	}
 	
 }
