@@ -23,9 +23,11 @@ public class FaleConosco {
 	@Column(name = "telefone", length = 20)
 	private String telefone;
 	
-	@Column(name = "mensagem", length = 2500)
-	private String mensagem;
+	@Column(name = "msg", length = 2500)
+	private String msg;
 
+	@Column(name = "email", length = 100)
+	private String email;
 
 
 	public int getIdFaleConosco() {
@@ -52,11 +54,21 @@ public class FaleConosco {
 		this.telefone = telefone;
 	}
 
-	public String getMensagem() {
-		return mensagem;
+	public String getMsg() {
+		return msg;
 	}
 
-	public void setMensagem(String mensagem) {
-		this.mensagem = mensagem;
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}	
+	
+	
 }
