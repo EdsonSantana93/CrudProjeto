@@ -116,4 +116,12 @@ public class CadastroUsuario {
 		this.postagem = postagem;
 	}
 	
+	@Override
+	public String toString() {
+		return "CadastroUsuario [idUsuario=" + idUsuario + ", email=" + email + ", nome=" + nome + ", senha=" + senha
+				+ ", telefone=" + telefone + ", foto=" + foto + ", descricao=" + descricao + ", postagem=" + postagem
+				+ "]";
+	}
+
+	
 }
