@@ -20,64 +20,68 @@ import br.org.eureka.Eureka.service.ICadastroUsuarioService;
 @RestController
 @CrossOrigin("*")
 public class CadastroController {
-	
+
 	@Autowired
 	private ICadastroUsuarioService servico;
-	
+
 	@PostMapping("/login/")
-	public ResponseEntity<Token> autentica(@RequestBody CadastroUsuario usuario){
-		if (usuario.getEmail().equals(usuario.getEmail()) && usuario.getSenha().equals(usuario.getEmail())) {
-			
-			String tk = Autenticator.generateToken(usuario);
-			System.out.println("TOKEN Gerado = "+tk);
+	public ResponseEntity<Token> autentica(@RequestBody CadastroUsuario usuario) {
+		CadastroUsuario user = servico.autenticarUsuario(usuario.getEmail(), usuario.getSenha());
+		if (user != null) {
 			Token token = new Token();
-			token.setStrToken(tk);
+			token.setStrToken(Autenticator.generateToken(user));
 			return ResponseEntity.ok(token);
-		}
-		else {
+		} else {
 			return ResponseEntity.status(403).build();
 		}
-		
+
 	}
-	
+
 	@PostMapping("/cadastro/novo/")
-	public ResponseEntity<CadastroUsuario> incluirNovo (@RequestBody CadastroUsuario cadastro) {
+	public ResponseEntity<CadastroUsuario> incluirNovo(@RequestBody CadastroUsuario cadastro) {
 		System.out.println(cadastro.getNome());
 		servico.adicionarNovoUsuario(cadastro);
 		System.out.println(cadastro.getNome());
 		return ResponseEntity.ok(cadastro);
 	}
-	
+
 	@GetMapping("/cadastro/todos/")
-	public ResponseEntity<List<CadastroUsuario>> mostrarTodos(){
+	public ResponseEntity<List<CadastroUsuario>> mostrarTodos() {
 		return ResponseEntity.ok(servico.recuperarTodos());
 	}
-	
+
 	@GetMapping("/cadastro/{idUsuario}")
-	public ResponseEntity<CadastroUsuario> mostrarPeloId(@PathVariable int idusuario){
+	public ResponseEntity<CadastroUsuario> mostrarPeloId(@PathVariable int idusuario) {
 		CadastroUsuario c = servico.recuperarPorId(idusuario);
 		if (c != null) {
 			return ResponseEntity.ok(c);
 		}
 		return ResponseEntity.notFound().build();
 	}
-	
+
 	@PostMapping("/cadastro/login")
-	public ResponseEntity<CadastroUsuario> logarUsuario(@RequestBody CadastroUsuario usuario){
+	public ResponseEntity<CadastroUsuario> logarUsuario(@RequestBody CadastroUsuario usuario) {
 		CadastroUsuario u = servico.autenticarUsuario(usuario.getEmail(), usuario.getSenha());
 		if (u != null) {
 			return ResponseEntity.ok(u);
 		}
 		return ResponseEntity.notFound().build();
 	}
-	
+
 	@GetMapping("/Feed")
-	public ResponseEntity<CadastroUsuario> getInfo(@RequestParam String token){
+	public ResponseEntity<CadastroUsuario> getInfo(@RequestParam String token) {
 		CadastroUsuario tmp = Autenticator.getUserFromToken(token);
 		tmp = servico.recuperarPorId(tmp.getIdUsuario());
 		if (tmp != null) {
 			return ResponseEntity.ok(tmp);
 		}
 		return ResponseEntity.notFound().build();
+	}
+	
+	@GetMapping("/cadastro/detalhes")
+	public ResponseEntity<CadastroUsuario> getDetalhes(@RequestParam String token){
+		CadastroUsuario user = Autenticator.getUserFromToken(token);
+		user = servico.recuperarPorId(user.getIdUsuario());
+		return ResponseEntity.ok(user);
 	}
 }

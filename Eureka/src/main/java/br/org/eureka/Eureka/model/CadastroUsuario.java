@@ -118,9 +118,10 @@ public class CadastroUsuario {
 	
 	@Override
 	public String toString() {
-		return "CadastroUsuario [idUsuario=" + idUsuario + ", email=" + email + ", nome=" + nome + ", senha=" + senha
-				+ ", telefone=" + telefone + ", foto=" + foto + ", descricao=" + descricao + ", postagem=" + postagem
-				+ "]";
+		return idUsuario+";"+nome+";"+email;
+		//return "CadastroUsuario [idUsuario=" + idUsuario + ", email=" + email + ", nome=" + nome + ", senha=" + senha
+		//		+ ", telefone=" + telefone + ", foto=" + foto + ", descricao=" + descricao + ", postagem=" + postagem
+		//		+ "]";
 	}
 
 	

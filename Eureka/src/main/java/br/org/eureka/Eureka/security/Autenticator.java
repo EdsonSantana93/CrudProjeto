@@ -6,7 +6,7 @@ import br.org.eureka.Eureka.model.CadastroUsuario;
 
 public class Autenticator {
 	
-private static final String PREFIXO="*GeNeRaTiOn|";
+private static final String PREFIXO="*GeNeRaTiOn|;";
 	
 	public static String generateToken(CadastroUsuario usuario) {
 		String str = PREFIXO + usuario.toString();
