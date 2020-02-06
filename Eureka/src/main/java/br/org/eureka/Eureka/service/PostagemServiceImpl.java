@@ -18,7 +18,7 @@ public class PostagemServiceImpl implements IPostagemService {
 	@Override
 	public List<Postagem> recuperarTodos() {
 		// TODO Auto-generated method stub
-		return (List<Postagem>)repo.findAll();
+		return (List<Postagem>)repo.findByOrderByIdPostagemDesc();
 	}
 
 	@Override
