@@ -10,11 +10,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity 
-@Table(name = "tbl_cadastrousuario")
+@Table(name = "tbl_cadastrousuario", uniqueConstraints={@UniqueConstraint(columnNames={"email"})})
 public class CadastroUsuario {
  
 	@Id
